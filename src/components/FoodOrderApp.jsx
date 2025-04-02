@@ -71,7 +71,7 @@ const FoodOrderApp = () => {
   return (
     <div className={`food-order-app ${animate ? 'animate-in' : ''}`}>
       <header className="app-header">
-        <h1 className="title-bounce">Tasty Bill Generator</h1>
+        <h1 className="title-bounce">Food Order Bill Generator</h1>
         <p>Add items to your order and generate a bill</p>
       </header>
       
