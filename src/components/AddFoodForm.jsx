@@ -10,7 +10,7 @@ const AddFoodForm = ({ onAddFood }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    // Reset form active state when form is empty
+
     setIsFormActive(foodName.trim() !== '' || foodPrice !== '');
   }, [foodName, foodPrice]);
 
@@ -31,15 +31,13 @@ const AddFoodForm = ({ onAddFood }) => {
     }
     
     setIsSubmitting(true);
-    
-    // Simulate a bit of processing time for visual feedback
+
     setTimeout(() => {
       onAddFood({
         name: foodName,
         price: price.toFixed(2)
       });
       
-      // Reset form
       setFoodName('');
       setFoodPrice('');
       setError('');
@@ -48,7 +46,7 @@ const AddFoodForm = ({ onAddFood }) => {
   };
 
   const animateError = () => {
-    // Add shake animation class
+    
     const form = document.querySelector('.add-food-form');
     form.classList.add('shake');
     setTimeout(() => form.classList.remove('shake'), 500);
