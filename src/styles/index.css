@@ -1,0 +1,30 @@
+
+/* Import the existing styles */
+@import './index.css';
+
+/* Add these styles */
+body {
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  color: #2c3e50;
+}
+
+.app-container {
+  min-height: 100vh;
+  padding: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}

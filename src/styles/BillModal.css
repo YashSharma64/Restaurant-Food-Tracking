@@ -1,0 +1,348 @@
+
+.bill-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease;
+}
+
+.bill-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.bill-modal {
+  background: linear-gradient(to bottom, #ffffff, #f8f8f8);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transform: scale(0.8);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.17, 0.67, 0.35, 1.2);
+}
+
+.bill-modal-overlay.active .bill-modal {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.bill-content {
+  padding: 30px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.bill-header {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.bill-header:after {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(to right, #e67e22, #f39c12);
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  animation: pulseWidth 3s infinite;
+}
+
+@keyframes pulseWidth {
+  0%, 100% { width: 100px; }
+  50% { width: 150px; }
+}
+
+.bill-title {
+  font-size: 28px;
+  margin-bottom: 5px;
+  background: linear-gradient(to right, #e67e22, #f39c12, #e74c3c);
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: titleGlow 2s infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% { text-shadow: 0 0 5px rgba(230, 126, 34, 0.3); }
+  50% { text-shadow: 0 0 15px rgba(230, 126, 34, 0.6); }
+}
+
+.bill-info {
+  margin-top: 15px;
+}
+
+.highlight {
+  color: #e67e22;
+  font-weight: bold;
+}
+
+.bill-items {
+  margin-bottom: 20px;
+}
+
+.bill-items table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+.bill-items th {
+  text-align: left;
+  padding: 10px 5px;
+  color: #7f8c8d;
+  font-weight: 600;
+  border-bottom: 2px solid #ecf0f1;
+  position: relative;
+  overflow: hidden;
+}
+
+.bill-items th::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #e67e22, #f39c12);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.bill-modal-overlay.active .bill-items th::after {
+  transform: translateX(0);
+  transition-delay: 0.6s;
+}
+
+.bill-items td {
+  padding: 12px 5px;
+  position: relative;
+}
+
+.item-row {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeRowIn 0.5s forwards;
+  animation-delay: 0.8s;
+  transition: all 0.3s;
+}
+
+@keyframes fadeRowIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bill-items tr:hover td {
+  background-color: rgba(236, 240, 241, 0.5);
+  transform: translateX(5px);
+}
+
+.divider {
+  height: 2px;
+  background: linear-gradient(to right, transparent, #ecf0f1, transparent);
+  margin: 20px 0;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(230, 126, 34, 0.5), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.bill-total {
+  font-size: 22px;
+  font-weight: 600;
+  text-align: right;
+  margin: 20px 0;
+  color: #2c3e50;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(236, 240, 241, 0.5);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.bill-total:hover {
+  background-color: rgba(230, 126, 34, 0.1);
+}
+
+.total-amount {
+  color: #27ae60;
+  opacity: 0;
+  animation: fadeIn 0.8s forwards;
+  animation-delay: 1.2s;
+}
+
+.thank-you {
+  text-align: center;
+  margin-top: 30px;
+  font-style: italic;
+  color: #7f8c8d;
+  position: relative;
+  padding: 10px 0;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.thank-you:before, .thank-you:after {
+  content: '✨';
+  color: #f39c12;
+  margin: 0 10px;
+  display: inline-block;
+  animation: twinkle 2s infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.bill-actions {
+  display: flex;
+  padding: 20px;
+  border-top: 1px solid #ecf0f1;
+  background-color: #f8f9fa;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.print-button, .close-button {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s;
+  margin: 0 10px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.button-icon {
+  font-size: 18px;
+  margin-right: 5px;
+  transition: all 0.3s;
+}
+
+.print-button {
+  background: linear-gradient(to right, #3498db, #2980b9);
+  color: white;
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+}
+
+.print-button:hover {
+  background: linear-gradient(to right, #2980b9, #2573a7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(52, 152, 219, 0.3);
+}
+
+.print-button:hover .button-icon {
+  transform: translateY(-3px);
+}
+
+.close-button {
+  background: linear-gradient(to right, #ecf0f1, #dfe4ea);
+  color: #7f8c8d;
+}
+
+.close-button:hover {
+  background: linear-gradient(to right, #dfe4ea, #c8d6e5);
+  color: #576574;
+  transform: translateY(-2px);
+}
+
+.close-button:hover .button-icon {
+  transform: scale(1.2);
+}
+
+.print-button:active, .close-button:active {
+  transform: translateY(1px);
+}
+
+.print-button::after, .close-button::after {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: rgba(255, 255, 255, 0.2);
+  top: -120%;
+  left: -10%;
+  transform: rotate(15deg);
+  transition: all 0.4s;
+  z-index: 1;
+}
+
+.print-button:hover::after, .close-button:hover::after {
+  top: 100%;
+}
+
+@media print {
+  .bill-modal-overlay {
+    position: absolute;
+    background: none;
+  }
+  
+  .bill-modal {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+  
+  .bill-actions {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .bill-content {
+    padding: 20px 15px;
+  }
+  
+  .bill-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .print-button, .close-button {
+    margin: 0;
+  }
+}
