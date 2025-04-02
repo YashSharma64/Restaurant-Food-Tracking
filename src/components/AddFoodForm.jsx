@@ -94,4 +94,4 @@ const AddFoodForm = ({ onAddFood }) => {
   );
 };
 
-export default AddFoodForm;
+export default AddFoodForm; 
