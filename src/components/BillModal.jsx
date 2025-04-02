@@ -7,10 +7,9 @@ const BillModal = ({ items, total, orderNumber, onClose }) => {
   const [animateIn, setAnimateIn] = useState(false);
   
   useEffect(() => {
-    // Trigger entrance animation
     setAnimateIn(true);
     
-    // Add event listener to close modal with escape key
+  
     const handleEscape = (e) => {
       if (e.key === 'Escape') onClose();
     };
