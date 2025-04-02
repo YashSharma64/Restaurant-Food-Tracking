@@ -15,7 +15,6 @@ const FoodOrderApp = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Trigger animation when component mounts
     setAnimate(true);
   }, []);
 
